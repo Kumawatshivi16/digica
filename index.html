@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cash Flow Tracker</title>
+    <title>DigiCA - Digital Cash Flow Manager</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
     <div class="container">
-        <h1>Cash Flow Tracker</h1>
+
+        <!-- Branding -->
+        <h1>DigiCA</h1>
+        <p style="text-align:center; margin-bottom:10px; color:#7f8c8d;">
+            Your simple digital assistant for managing income, expenses and multiple accounts.
+        </p>
+        <p style="text-align:center; margin-bottom:30px; font-size:14px; color:#95a5a6;">
+            Built for students, freelancers and small business owners.
+        </p>
 
         <!-- Account Filter -->
-        <div style="margin-bottom:20px;">
-            <label><strong>Select Account:</strong></label>
-            <select id="accountFilter">
+        <div style="margin-bottom:25px; text-align:center;">
+            <label><strong>View Account:</strong></label>
+            <select id="accountFilter" style="padding:8px; margin-left:10px; border-radius:6px;">
                 <option value="All">All Accounts</option>
                 <option value="Personal">Personal</option>
                 <option value="Business">Business</option>
@@ -43,7 +51,6 @@
             <h2>Add Transaction</h2>
             <form id="transactionForm">
 
-                <!-- Account Selection -->
                 <select id="account" required>
                     <option value="">Select Account</option>
                     <option value="Personal">Personal</option>
@@ -77,6 +84,11 @@
 
             <ul id="transactionList"></ul>
         </div>
+
+        <!-- Footer -->
+        <footer style="text-align:center; margin-top:40px; font-size:13px; color:#95a5a6;">
+            © 2026 DigiCA | Built by Shivi Kumawat
+        </footer>
 
     </div>
 
