@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cash Flow Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cash Flow Tracker</h1>
+
+        <!-- Summary Section -->
+        <div class="summary">
+            <div class="card income">
+                <h3>Total Income</h3>
+                <p id="totalIncome">₹0</p>
+            </div>
+            <div class="card expense">
+                <h3>Total Expense</h3>
+                <p id="totalExpense">₹0</p>
+            </div>
+            <div class="card balance">
+                <h3>Net Balance</h3>
+                <p id="netBalance">₹0</p>
+            </div>
+        </div>
+
+        <!-- Add Transaction Form -->
+        <div class="form-container">
+            <h2>Add Transaction</h2>
+            <form id="transactionForm">
+                <select id="type" required>
+                    <option value="">Select Type</option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                    <option value="Purchase">Purchase</option>
+                    <option value="Sale">Sale</option>
+                </select>
+
+                <input type="number" id="amount" placeholder="Amount" required />
+
+                <input type="date" id="date" required />
+
+                <input type="text" id="notes" placeholder="Notes" />
+
+                <button type="submit">Add Transaction</button>
+            </form>
+        </div>
+
+        <!-- Transactions List -->
+        <div class="transactions">
+            <h2>Transactions</h2>
+            <ul id="transactionList"></ul>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
