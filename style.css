@@ -5,6 +5,26 @@
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
+/* Smooth Theme Transition */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body,
+.card,
+.section,
+.modal-content,
+.credit-card,
+input,
+select,
+button,
+.transaction-item {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
 body {
     background: #f4f6f9;
     padding: 20px 15px;
@@ -18,10 +38,24 @@ body {
 
 /* ===== HEADER ===== */
 
-h1 {
+.header {
+    position: relative;
     text-align: center;
+}
+
+h1 {
     margin-bottom: 8px;
     font-weight: 600;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .tagline {
@@ -97,7 +131,7 @@ h1 {
     align-items: center;
 }
 
-/* ===== TRANSACTIONS LIST ===== */
+/* ===== LISTS ===== */
 
 ul {
     list-style: none;
@@ -313,7 +347,43 @@ form button:hover {
     color: #95a5a6;
 }
 
-/* ===== MOBILE OPTIMIZATION ===== */
+/* ===== DARK MODE ===== */
+
+body.dark {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark .card,
+body.dark .section,
+body.dark .modal-content,
+body.dark .credit-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: none;
+}
+
+body.dark input,
+body.dark select {
+    background: #334155;
+    color: #f1f5f9;
+    border: 1px solid #475569;
+}
+
+body.dark .transaction-item {
+    border-bottom: 1px solid #334155;
+}
+
+body.dark .credit-card {
+    background: #1e293b;
+}
+
+body.dark .close-btn {
+    background: #475569;
+    color: #f1f5f9;
+}
+
+/* ===== MOBILE ===== */
 
 @media (max-width: 600px) {
 
@@ -334,5 +404,4 @@ form button:hover {
     .credit-card p {
         font-size: 16px;
     }
-
 }

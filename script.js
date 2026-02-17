@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const exportBtn = document.getElementById("exportBtn");
 
-    /* Modals */
     const openTransactionBtn = document.getElementById("openTransactionBtn");
     const closeTransactionBtn = document.getElementById("closeTransactionBtn");
     const transactionModal = document.getElementById("transactionModal");
@@ -30,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const transactionForm = document.getElementById("transactionForm");
     const creditForm = document.getElementById("creditForm");
+
+    const themeToggle = document.getElementById("themeToggle");
 
     /* =============================
        DATA
@@ -47,13 +48,68 @@ document.addEventListener("DOMContentLoaded", function () {
         return "₹ " + amount.toLocaleString("en-IN");
     }
 
-    function getSelectedAccount() {
-        return accountFilter.value;
+    /* =============================
+       ANIMATE NUMBERS
+    ============================== */
+
+    function animateValue(element, start, end, duration = 400) {
+
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+
+            if ((increment > 0 && current >= end) ||
+                (increment < 0 && current <= end)) {
+                current = end;
+                clearInterval(timer);
+            }
+
+            element.textContent = formatCurrency(Math.round(current));
+        }, 16);
     }
+
+    /* =============================
+       THEME SYSTEM
+    ============================== */
+
+    function applyInitialTheme() {
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme) {
+            document.body.classList.toggle("dark", savedTheme === "dark");
+        } else {
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.body.classList.toggle("dark", prefersDark);
+        }
+
+        updateToggleIcon();
+    }
+
+    function updateToggleIcon() {
+        themeToggle.textContent =
+            document.body.classList.contains("dark") ? "☀️" : "🌙";
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark");
+        const currentTheme =
+            document.body.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("theme", currentTheme);
+        updateToggleIcon();
+    });
+
+    applyInitialTheme();
 
     /* =============================
        FILTER HELPERS
     ============================== */
+
+    function getSelectedAccount() {
+        return accountFilter.value;
+    }
 
     function getFilteredTransactions() {
         const selected = getSelectedAccount();
@@ -115,9 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const net = totalIncome - totalExpense;
 
-        totalIncomeEl.textContent = formatCurrency(totalIncome);
-        totalExpenseEl.textContent = formatCurrency(totalExpense);
-        netBalanceEl.textContent = formatCurrency(net);
+        animateValue(totalIncomeEl, 0, totalIncome);
+        animateValue(totalExpenseEl, 0, totalExpense);
+        animateValue(netBalanceEl, 0, net);
 
         netBalanceEl.classList.toggle("positive", net >= 0);
         netBalanceEl.classList.toggle("negative", net < 0);
@@ -143,11 +199,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             totalGiven += credit.amount;
 
-            if (credit.status === "Pending") {
+            if (credit.status === "Pending")
                 totalPending += credit.amount;
-            } else {
+            else
                 totalReceived += credit.amount;
-            }
 
             const li = document.createElement("li");
             li.classList.add("transaction-item");
@@ -175,9 +230,9 @@ document.addEventListener("DOMContentLoaded", function () {
             creditList.appendChild(li);
         });
 
-        totalCreditEl.textContent = formatCurrency(totalGiven);
-        pendingCreditEl.textContent = formatCurrency(totalPending);
-        receivedCreditEl.textContent = formatCurrency(totalReceived);
+        animateValue(totalCreditEl, 0, totalGiven);
+        animateValue(pendingCreditEl, 0, totalPending);
+        animateValue(receivedCreditEl, 0, totalReceived);
     }
 
     /* =============================
@@ -242,12 +297,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     /* =============================
-       DELETE + MARK PAID
+       DELETE & MARK PAID
     ============================== */
 
     document.addEventListener("click", function (e) {
 
-        // Delete Transaction
         if (e.target.classList.contains("delete-transaction")) {
             const index = e.target.dataset.index;
             if (confirm("Delete this transaction?")) {
@@ -257,7 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Delete Credit
         if (e.target.classList.contains("delete-credit")) {
             const index = e.target.dataset.index;
             if (confirm("Delete this credit entry?")) {
@@ -267,14 +320,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Mark Credit as Paid
         if (e.target.classList.contains("mark-paid")) {
             const index = e.target.dataset.index;
             const credit = credits[index];
 
             credit.status = "Paid";
 
-            // Automatically add income transaction
             transactions.push({
                 account: credit.account,
                 type: "Income",
@@ -290,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     /* =============================
-       EXPORT CSV (FILTERED)
+       EXPORT
     ============================== */
 
     exportBtn.addEventListener("click", function () {
@@ -320,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     /* =============================
-       MODAL CONTROLS
+       MODALS
     ============================== */
 
     openTransactionBtn.addEventListener("click", () => {
@@ -340,12 +391,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener("click", function (e) {
-        if (e.target === transactionModal) {
-            transactionModal.style.display = "none";
-        }
-        if (e.target === creditModal) {
-            creditModal.style.display = "none";
-        }
+        if (e.target === transactionModal) transactionModal.style.display = "none";
+        if (e.target === creditModal) creditModal.style.display = "none";
     });
 
     accountFilter.addEventListener("change", function () {
