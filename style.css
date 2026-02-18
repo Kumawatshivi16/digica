@@ -957,3 +957,142 @@ form > .form-group { margin-bottom: 12px; }
   .fab { width: 46px; height: 46px; }
   .fab-primary { width: 50px; height: 50px; }
 }
+/* =============================================
+   AUTH SCREEN
+   ============================================= */
+
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--clr-bg);
+}
+
+.auth-card {
+  background: var(--clr-surface);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--clr-border-soft);
+  padding: 32px 28px 28px;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeUp 0.3s ease both;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 28px;
+}
+
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: var(--clr-text);
+}
+
+.auth-sub {
+  font-size: 13px;
+  color: var(--clr-text-muted);
+  margin-bottom: 22px;
+}
+
+.auth-panel .form-group {
+  margin-bottom: 14px;
+}
+
+.auth-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  border: 1.5px solid var(--clr-border) !important;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  color: var(--clr-text-muted);
+  margin-top: 6px;
+}
+
+/* =============================================
+   USER MENU (header)
+   ============================================= */
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-sm {
+  padding: 5px 12px !important;
+  font-size: 12px !important;
+}
+
+/* =============================================
+   STATUS TAGS (credit entries)
+   ============================================= */
+
+.status-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  padding: 1px 6px;
+  border-radius: 100px;
+  margin-left: 5px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tag-pending {
+  background: rgba(201, 120, 32, 0.12);
+  color: var(--clr-pending);
+}
+
+.tag-paid {
+  background: var(--clr-income-bg);
+  color: var(--clr-income);
+}
+
+.badge-pending {
+  background: rgba(201, 120, 32, 0.15);
+  color: var(--clr-pending);
+}
+
+/* Balance hero positive/negative */
+.balance-amount.positive { color: var(--clr-income); }
+.balance-amount.negative { color: var(--clr-expense); }
+.balance-sub.positive    { color: var(--clr-income); }
+.balance-sub.negative    { color: var(--clr-expense); }

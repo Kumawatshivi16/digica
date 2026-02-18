@@ -25,263 +25,319 @@
     </div>
   </div>
 
-  <div class="container">
-
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">
+  <!-- ── AUTH SCREEN ── -->
+  <div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-logo">
         <div class="logo-mark">D</div>
         <div class="logo-text">
           <h1>DigiCA</h1>
-          <p class="tagline">Simple digital accounting for small businesses and professionals</p>
+          <p class="tagline">Simple digital accounting</p>
         </div>
       </div>
-      <div class="header-actions">
-        <div class="filter-wrap">
-          <svg class="filter-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-          <select id="accountFilter" aria-label="Filter by account">
-            <option value="All">All Accounts</option>
-            <option value="Personal">Personal</option>
-            <option value="Business">Business</option>
-            <option value="Savings">Savings</option>
-          </select>
+
+      <!-- Login Panel -->
+      <div id="loginPanel" class="auth-panel">
+        <h2 class="auth-title">Welcome back</h2>
+        <p class="auth-sub">Sign in to your account</p>
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" />
+          <span class="field-error" id="loginEmailErr"></span>
         </div>
-        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
-          <span class="toggle-track"><span class="toggle-thumb"></span></span>
-          <span class="toggle-label" id="toggleLabel">Light</span>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" />
+          <span class="field-error" id="loginPasswordErr"></span>
+        </div>
+        <button id="loginBtn" class="btn btn-primary auth-btn">Sign In</button>
+        <button id="googleLoginBtn" class="btn btn-ghost auth-btn google-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continue with Google
         </button>
-      </div>
-    </header>
-
-    <!-- TABS -->
-    <nav class="tabs" role="tablist" aria-label="App sections">
-      <button class="tab-btn active" data-tab="dashboard"     role="tab" aria-selected="true">Dashboard</button>
-      <button class="tab-btn"        data-tab="transactions"  role="tab" aria-selected="false">Transactions</button>
-      <button class="tab-btn"        data-tab="credit"        role="tab" aria-selected="false">Credit</button>
-    </nav>
-
-    <!-- ── DASHBOARD TAB ── -->
-    <div id="dashboard" class="tab-content active" role="tabpanel">
-
-      <div class="balance-hero">
-        <span class="balance-label">Net Balance</span>
-        <p class="balance-amount" id="netBalance">₹0</p>
-        <span class="balance-sub" id="balanceHint">—</span>
+        <p class="auth-switch">Don't have an account? <button class="link-btn" id="showSignup">Sign up</button></p>
       </div>
 
-      <div class="stat-row">
-        <div class="stat-card income-stat">
-          <span class="stat-icon">↑</span>
-          <div>
-            <span class="stat-label">Income</span>
-            <p class="stat-value" id="totalIncome">₹0</p>
-          </div>
+      <!-- Signup Panel -->
+      <div id="signupPanel" class="auth-panel" style="display:none">
+        <h2 class="auth-title">Create account</h2>
+        <p class="auth-sub">Start tracking your finances</p>
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Your name" />
+          <span class="field-error" id="signupNameErr"></span>
         </div>
-        <div class="stat-card expense-stat">
-          <span class="stat-icon">↓</span>
-          <div>
-            <span class="stat-label">Expenses</span>
-            <p class="stat-value" id="totalExpense">₹0</p>
-          </div>
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="you@example.com" />
+          <span class="field-error" id="signupEmailErr"></span>
         </div>
-        <div class="stat-card credit-stat">
-          <span class="stat-icon">⏳</span>
-          <div>
-            <span class="stat-label">Pending</span>
-            <p class="stat-value" id="pendingCredit">₹0</p>
-          </div>
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Min 6 characters" />
+          <span class="field-error" id="signupPasswordErr"></span>
         </div>
-      </div>
-
-      <!-- Recent transactions preview -->
-      <div class="recent-section">
-        <div class="recent-header">
-          <span class="recent-title">Recent</span>
-          <button class="link-btn" id="viewAllBtn">View all →</button>
-        </div>
-        <ul id="recentList" class="entry-list"></ul>
-        <div id="recentEmpty" class="empty-state" hidden>
-          <div class="empty-icon">📊</div>
-          <p>No transactions yet. Tap <strong>+</strong> to add one.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── TRANSACTIONS TAB ── -->
-    <div id="transactions" class="tab-content" role="tabpanel">
-      <div class="section-header">
-        <h2 class="section-title">Transactions</h2>
-        <button id="exportBtn" class="btn btn-ghost" aria-label="Export CSV">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export
+        <button id="signupBtn" class="btn btn-primary auth-btn">Create Account</button>
+        <button id="googleSignupBtn" class="btn btn-ghost auth-btn google-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continue with Google
         </button>
+        <p class="auth-switch">Already have an account? <button class="link-btn" id="showLogin">Sign in</button></p>
       </div>
-      <ul id="transactionList" class="entry-list"></ul>
-      <div id="txEmpty" class="empty-state" hidden>
-        <div class="empty-icon">📋</div>
-        <p>No transactions yet.<br>Tap <strong>+</strong> to add one.</p>
-      </div>
+
     </div>
-
-    <!-- ── CREDIT TAB ── -->
-    <div id="credit" class="tab-content" role="tabpanel">
-      <h2 class="section-title">Credit <span class="muted">(Udhar)</span></h2>
-
-      <div class="credit-stats">
-        <div class="credit-stat-item">
-          <span class="credit-stat-label">Total Given</span>
-          <span class="credit-stat-val" id="totalCredit">₹0</span>
-        </div>
-        <div class="credit-divider"></div>
-        <div class="credit-stat-item">
-          <span class="credit-stat-label">Pending</span>
-          <span class="credit-stat-val pending" id="pendingCreditTab">₹0</span>
-        </div>
-        <div class="credit-divider"></div>
-        <div class="credit-stat-item">
-          <span class="credit-stat-label">Received</span>
-          <span class="credit-stat-val received" id="receivedCredit">₹0</span>
-        </div>
-      </div>
-
-      <ul id="creditList" class="entry-list"></ul>
-      <div id="creditEmpty" class="empty-state" hidden>
-        <div class="empty-icon">🤝</div>
-        <p>No credit entries yet.<br>Tap <strong>₹</strong> to add one.</p>
-      </div>
-    </div>
-
-    <footer class="footer">© 2026 DigiCA &nbsp;·&nbsp; Built by Shivi Kumawat</footer>
-
   </div>
 
-  <!-- FABs -->
-  <div class="fab-group">
-    <button id="openCreditBtn" class="fab fab-credit" aria-label="Add credit entry">
-      <!-- Indian Rupee symbol -->
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 3h12"/><path d="M6 8h12"/>
-        <path d="M6 13l8.5 8"/><path d="M6 13c0 0 3 0 4.5-1.5S12.5 8 10 8"/>
-      </svg>
-    </button>
-    <button id="openTransactionBtn" class="fab fab-primary" aria-label="Add transaction">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-      </svg>
-    </button>
-  </div>
+  <!-- ── MAIN APP (hidden until logged in) ── -->
+  <div id="appScreen" style="display:none">
 
-  <!-- TRANSACTION MODAL -->
-  <div class="modal" id="transactionModal" role="dialog" aria-modal="true" aria-labelledby="txModalTitle">
-    <div class="modal-content">
-      <div class="modal-handle"></div>
-      <div class="modal-header">
-        <h2 id="txModalTitle">New Transaction</h2>
-        <button class="modal-close" id="closeTransactionBtn" aria-label="Close">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-      <form id="transactionForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="account">Account</label>
-            <select id="account" required>
-              <option value="">Select…</option>
+    <div class="container">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="logo">
+          <div class="logo-mark">D</div>
+          <div class="logo-text">
+            <h1>DigiCA</h1>
+            <p class="tagline">Simple digital accounting for small businesses and professionals</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="filter-wrap">
+            <svg class="filter-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <select id="accountFilter" aria-label="Filter by account">
+              <option value="All">All Accounts</option>
               <option value="Personal">Personal</option>
               <option value="Business">Business</option>
               <option value="Savings">Savings</option>
             </select>
-            <span class="field-error" id="accountErr"></span>
           </div>
-          <div class="form-group">
-            <label for="type">Type</label>
-            <select id="type" required>
-              <option value="">Select…</option>
-              <option value="Income">Income</option>
-              <option value="Expense">Expense</option>
-              <option value="Purchase">Purchase</option>
-              <option value="Sale">Sale</option>
-            </select>
-            <span class="field-error" id="typeErr"></span>
+          <!-- User Avatar + Logout -->
+          <div class="user-menu">
+            <div class="user-avatar" id="userAvatar" title="Account"></div>
+            <button id="logoutBtn" class="btn btn-ghost btn-sm" aria-label="Sign out">Sign out</button>
           </div>
+          <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <span class="toggle-label" id="toggleLabel">Light</span>
+          </button>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="amount">Amount (₹)</label>
-            <input type="number" id="amount" placeholder="0.00" min="1" required />
-            <span class="field-error" id="amountErr"></span>
-          </div>
-          <div class="form-group">
-            <label for="date">Date</label>
-            <input type="date" id="date" required />
-            <span class="field-error" id="dateErr"></span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="notes">Notes <span class="optional">(optional)</span></label>
-          <input type="text" id="notes" placeholder="e.g. Office supplies…" />
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-ghost" id="closeTransactionBtn2">Cancel</button>
-          <button type="submit" class="btn btn-primary">Add Transaction</button>
-        </div>
-      </form>
-    </div>
-  </div>
+      </header>
 
-  <!-- CREDIT MODAL -->
-  <div class="modal" id="creditModal" role="dialog" aria-modal="true" aria-labelledby="creditModalTitle">
-    <div class="modal-content">
-      <div class="modal-handle"></div>
-      <div class="modal-header">
-        <h2 id="creditModalTitle">New Credit Entry</h2>
-        <button class="modal-close" id="closeCreditBtn" aria-label="Close">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+      <!-- TABS -->
+      <nav class="tabs" role="tablist" aria-label="App sections">
+        <button class="tab-btn active" data-tab="dashboard"     role="tab" aria-selected="true">Dashboard</button>
+        <button class="tab-btn"        data-tab="transactions"  role="tab" aria-selected="false">Transactions</button>
+        <button class="tab-btn"        data-tab="credit"        role="tab" aria-selected="false">Credit</button>
+      </nav>
+
+      <!-- ── DASHBOARD TAB ── -->
+      <div id="dashboard" class="tab-content active" role="tabpanel">
+        <div class="balance-hero">
+          <span class="balance-label">Net Balance</span>
+          <p class="balance-amount" id="netBalance">₹0</p>
+          <span class="balance-sub" id="balanceHint">–</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat-card income-stat">
+            <span class="stat-icon">↑</span>
+            <div><span class="stat-label">Income</span><p class="stat-value" id="totalIncome">₹0</p></div>
+          </div>
+          <div class="stat-card expense-stat">
+            <span class="stat-icon">↓</span>
+            <div><span class="stat-label">Expenses</span><p class="stat-value" id="totalExpense">₹0</p></div>
+          </div>
+          <div class="stat-card credit-stat">
+            <span class="stat-icon">⏳</span>
+            <div><span class="stat-label">Pending</span><p class="stat-value" id="pendingCredit">₹0</p></div>
+          </div>
+        </div>
+        <div class="recent-section">
+          <div class="recent-header">
+            <span class="recent-title">Recent</span>
+            <button class="link-btn" id="viewAllBtn">View all →</button>
+          </div>
+          <ul id="recentList" class="entry-list"></ul>
+          <div id="recentEmpty" class="empty-state" hidden>
+            <div class="empty-icon">📊</div>
+            <p>No transactions yet. Tap <strong>+</strong> to add one.</p>
+          </div>
+        </div>
       </div>
-      <form id="creditForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="creditAccount">Account</label>
-            <select id="creditAccount" required>
-              <option value="">Select…</option>
-              <option value="Personal">Personal</option>
-              <option value="Business">Business</option>
-              <option value="Savings">Savings</option>
-            </select>
-            <span class="field-error" id="creditAccountErr"></span>
-          </div>
-          <div class="form-group">
-            <label for="creditDate">Date</label>
-            <input type="date" id="creditDate" required />
-            <span class="field-error" id="creditDateErr"></span>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="customerName">Customer Name</label>
-            <input type="text" id="customerName" placeholder="Full name" required />
-            <span class="field-error" id="customerNameErr"></span>
-          </div>
-          <div class="form-group">
-            <label for="creditAmount">Amount (₹)</label>
-            <input type="number" id="creditAmount" placeholder="0.00" min="1" required />
-            <span class="field-error" id="creditAmountErr"></span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="creditNotes">Notes <span class="optional">(optional)</span></label>
-          <input type="text" id="creditNotes" placeholder="e.g. For goods supplied…" />
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-ghost" id="closeCreditBtn2">Cancel</button>
-          <button type="submit" class="btn btn-primary">Add Credit</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
-  <script src="script.js"></script>
+      <!-- ── TRANSACTIONS TAB ── -->
+      <div id="transactions" class="tab-content" role="tabpanel">
+        <div class="section-header">
+          <h2 class="section-title">Transactions</h2>
+          <button id="exportBtn" class="btn btn-ghost" aria-label="Export CSV">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export
+          </button>
+        </div>
+        <ul id="transactionList" class="entry-list"></ul>
+        <div id="txEmpty" class="empty-state" hidden>
+          <div class="empty-icon">📋</div>
+          <p>No transactions yet.<br>Tap <strong>+</strong> to add one.</p>
+        </div>
+      </div>
+
+      <!-- ── CREDIT TAB ── -->
+      <div id="credit" class="tab-content" role="tabpanel">
+        <h2 class="section-title">Credit <span class="muted">(Udhar)</span></h2>
+        <div class="credit-stats">
+          <div class="credit-stat-item">
+            <span class="credit-stat-label">Total Given</span>
+            <span class="credit-stat-val" id="totalCredit">₹0</span>
+          </div>
+          <div class="credit-divider"></div>
+          <div class="credit-stat-item">
+            <span class="credit-stat-label">Pending</span>
+            <span class="credit-stat-val pending" id="pendingCreditTab">₹0</span>
+          </div>
+          <div class="credit-divider"></div>
+          <div class="credit-stat-item">
+            <span class="credit-stat-label">Received</span>
+            <span class="credit-stat-val received" id="receivedCredit">₹0</span>
+          </div>
+        </div>
+        <ul id="creditList" class="entry-list"></ul>
+        <div id="creditEmpty" class="empty-state" hidden>
+          <div class="empty-icon">🤝</div>
+          <p>No credit entries yet.<br>Tap <strong>₹</strong> to add one.</p>
+        </div>
+      </div>
+
+      <footer class="footer">© 2026 DigiCA · Built by Shivi Kumawat</footer>
+
+    </div><!-- /container -->
+
+    <!-- FABs -->
+    <div class="fab-group">
+      <button id="openCreditBtn" class="fab fab-credit" aria-label="Add credit entry">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3h12"/><path d="M6 8h12"/><path d="M6 13l8.5 8"/><path d="M6 13c0 0 3 0 4.5-1.5S12.5 8 10 8"/>
+        </svg>
+      </button>
+      <button id="openTransactionBtn" class="fab fab-primary" aria-label="Add transaction">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- TRANSACTION MODAL -->
+    <div class="modal" id="transactionModal" role="dialog" aria-modal="true" aria-labelledby="txModalTitle">
+      <div class="modal-content">
+        <div class="modal-handle"></div>
+        <div class="modal-header">
+          <h2 id="txModalTitle">New Transaction</h2>
+          <button class="modal-close" id="closeTransactionBtn" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <form id="transactionForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="account">Account</label>
+              <select id="account" required>
+                <option value="">Select…</option>
+                <option value="Personal">Personal</option>
+                <option value="Business">Business</option>
+                <option value="Savings">Savings</option>
+              </select>
+              <span class="field-error" id="accountErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select id="type" required>
+                <option value="">Select…</option>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+                <option value="Purchase">Purchase</option>
+                <option value="Sale">Sale</option>
+              </select>
+              <span class="field-error" id="typeErr"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="amount">Amount (₹)</label>
+              <input type="number" id="amount" placeholder="0.00" min="1" required />
+              <span class="field-error" id="amountErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" required />
+              <span class="field-error" id="dateErr"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes <span class="optional">(optional)</span></label>
+            <input type="text" id="notes" placeholder="e.g. Office supplies…" />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-ghost" id="closeTransactionBtn2">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add Transaction</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- CREDIT MODAL -->
+    <div class="modal" id="creditModal" role="dialog" aria-modal="true" aria-labelledby="creditModalTitle">
+      <div class="modal-content">
+        <div class="modal-handle"></div>
+        <div class="modal-header">
+          <h2 id="creditModalTitle">New Credit Entry</h2>
+          <button class="modal-close" id="closeCreditBtn" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <form id="creditForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="creditAccount">Account</label>
+              <select id="creditAccount" required>
+                <option value="">Select…</option>
+                <option value="Personal">Personal</option>
+                <option value="Business">Business</option>
+                <option value="Savings">Savings</option>
+              </select>
+              <span class="field-error" id="creditAccountErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="creditDate">Date</label>
+              <input type="date" id="creditDate" required />
+              <span class="field-error" id="creditDateErr"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="customerName">Customer Name</label>
+              <input type="text" id="customerName" placeholder="Full name" required />
+              <span class="field-error" id="customerNameErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="creditAmount">Amount (₹)</label>
+              <input type="number" id="creditAmount" placeholder="0.00" min="1" required />
+              <span class="field-error" id="creditAmountErr"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="creditNotes">Notes <span class="optional">(optional)</span></label>
+            <input type="text" id="creditNotes" placeholder="e.g. For goods supplied…" />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-ghost" id="closeCreditBtn2">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add Credit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div><!-- /appScreen -->
+
+  <!-- Firebase SDK (ESM via CDN) -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
